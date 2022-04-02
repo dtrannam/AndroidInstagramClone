@@ -10,21 +10,24 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import org.w3c.dom.Text
 
-class PostAdapter (val context: Context, val posts: List<Post>): RecyclerView.Adapter<PostAdapter.ViewHolder>() {
+class PostAdapter (val context: Context, val posts: MutableList<Post>): RecyclerView.Adapter<PostAdapter.ViewHolder>() {
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val tvUsername: TextView
         val ivImage: ImageView
         val tvDescription: TextView
+        val tvDate: TextView
 
         init {
             tvUsername = itemView.findViewById(R.id.tvUserName)
             ivImage = itemView.findViewById(R.id.ivImage)
             tvDescription = itemView.findViewById(R.id.tvDescription)
+            tvDate = itemView.findViewById(R.id.tvDate)
         }
 
         fun bind(post: Post) {
             tvDescription.text = post.getDescription()
             tvUsername.text = post.getUser()?.username
+            tvDate.text  = post.getDate()
             Glide.with(itemView.context).load(post.getImage()?.url).into(ivImage)
         }
     }
@@ -43,5 +46,15 @@ class PostAdapter (val context: Context, val posts: List<Post>): RecyclerView.Ad
 
     override fun getItemCount(): Int {
         return posts.size
+    }
+
+    fun clear() {
+        posts.clear()
+        notifyDataSetChanged()
+    }
+
+    fun addAll(postsList: List<Post>) {
+        posts.addAll(postsList)
+        notifyDataSetChanged()
     }
 }

@@ -13,10 +13,13 @@ import com.parse.*
 import java.io.File
 import android.content.Intent
 import android.content.Context
+import android.util.Log
 import android.widget.Toast
 import androidx.core.content.ContentProviderCompat.requireContext
+import com.bumptech.glide.load.engine.executor.GlideExecutor.UncaughtThrowableStrategy.LOG
 import com.google.android.material.internal.ContextUtils.getActivity
 import java.security.AccessController.getContext
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
     val TAG = "Main Page"
@@ -28,7 +31,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val fragmentManager: FragmentManager = supportFragmentManager
-
 
         var fragmentToShow: Fragment? = null
         findViewById<BottomNavigationView>(R.id.bottom_navigation).setOnItemSelectedListener {

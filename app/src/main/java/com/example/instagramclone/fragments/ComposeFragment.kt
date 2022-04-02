@@ -17,12 +17,12 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
-import com.example.instagramclone.LoginActivity
 import com.example.instagramclone.Post
 import com.example.instagramclone.R
 import com.parse.ParseFile
 import com.parse.ParseUser
 import java.io.File
+import java.util.*
 
 
 class ComposeFragment : Fragment() {
@@ -67,6 +67,7 @@ class ComposeFragment : Fragment() {
         val post = Post()
         post.setDescription(description)
         post.setUser(user)
+        post.setDate(Calendar.getInstance().time.toString())
         post.setImage(ParseFile(file))
         post.saveInBackground { exception ->
             if (exception != null) {

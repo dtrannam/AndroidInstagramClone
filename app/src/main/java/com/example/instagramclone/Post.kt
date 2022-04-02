@@ -11,6 +11,7 @@ class Post : ParseObject() {
         const val KEY_DESCRIPTION = "description"
         const val KEY_IMAGE = "image"
         const val KEY_USER = "user"
+        const val KEY_DATE = "date"
     }
 
     fun getDescription(): String? {
@@ -25,6 +26,9 @@ class Post : ParseObject() {
         return getParseUser(KEY_USER)
     }
 
+    fun getDate(): String? {
+        return getString(KEY_DATE)
+    }
     fun setDescription(description: String) {
         put(KEY_DESCRIPTION, description)
     }
@@ -35,5 +39,9 @@ class Post : ParseObject() {
 
     fun setUser(user: ParseUser) {
         put(KEY_USER, user)
+    }
+
+    fun setDate(date: String) {
+        put(KEY_DATE, date)
     }
 }
